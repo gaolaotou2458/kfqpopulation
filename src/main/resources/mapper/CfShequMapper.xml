@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.CfShequMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.CfShequ">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+    <result column="objectid" jdbcType="BIGINT" property="objectid" />
+    <result column="classid" jdbcType="VARCHAR" property="classid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="fuid" jdbcType="VARCHAR" property="fuid" />
+    <result column="datasource" jdbcType="VARCHAR" property="datasource" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createdate" jdbcType="DATE" property="createdate" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updatedate" jdbcType="DATE" property="updatedate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pyname" jdbcType="VARCHAR" property="pyname" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="shortname" jdbcType="VARCHAR" property="shortname" />
+    <result column="mj" jdbcType="DOUBLE" property="mj" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="usedname" jdbcType="VARCHAR" property="usedname" />
+    <result column="population" jdbcType="DOUBLE" property="population" />
+    <result column="shape_star" jdbcType="DOUBLE" property="shapeStar" />
+    <result column="shape_stle" jdbcType="DOUBLE" property="shapeStle" />
+  </resultMap>
+
+
+    <resultMap id="geojsonMap" type="com.zhibodata.gis.kfqpopulation.dto.outdto.map.CfShequResponse">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="geojson" jdbcType="OTHER" property="geojson" />
+        <result column="objectid" jdbcType="BIGINT" property="objectid" />
+        <result column="classid" jdbcType="VARCHAR" property="classid" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="fuid" jdbcType="VARCHAR" property="fuid" />
+        <result column="datasource" jdbcType="VARCHAR" property="datasource" />
+        <result column="creator" jdbcType="VARCHAR" property="creator" />
+        <result column="createdate" jdbcType="DATE" property="createdate" />
+        <result column="editor" jdbcType="VARCHAR" property="editor" />
+        <result column="updatedate" jdbcType="DATE" property="updatedate" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="pyname" jdbcType="VARCHAR" property="pyname" />
+        <result column="alias" jdbcType="VARCHAR" property="alias" />
+        <result column="shortname" jdbcType="VARCHAR" property="shortname" />
+        <result column="mj" jdbcType="DOUBLE" property="mj" />
+        <result column="region" jdbcType="VARCHAR" property="region" />
+        <result column="usedname" jdbcType="VARCHAR" property="usedname" />
+        <result column="population" jdbcType="DOUBLE" property="population" />
+        <result column="shape_star" jdbcType="DOUBLE" property="shapeStar" />
+        <result column="shape_stle" jdbcType="DOUBLE" property="shapeStle" />
+        <result column="lon" javaType="DOUBLE" property="lon"/>
+        <result column="lat" javaType="DOUBLE" property="lat"/>
+        <result column="center_point" jdbcType="VARCHAR" property="centerPoint" />
+    </resultMap>
+
+    <select id="queryList" resultMap="geojsonMap">
+          select  st_asgeojson(geom) as geojson,* from cf_shequ
+          where 1=1
+         <if test="keyword != null and keyword != ''" >
+             AND  name like concat('%',#{keyword},'%')
+         </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        select count(*) from cf_shequ
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND  name like concat('%',#{keyword},'%')
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+
+
+</mapper>

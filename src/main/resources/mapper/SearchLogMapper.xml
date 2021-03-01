@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.SearchLogMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.SearchLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="clazz" jdbcType="VARCHAR" property="clazz" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="search_time" jdbcType="TIMESTAMP" property="searchTime" />
+    <result column="search_ip" jdbcType="VARCHAR" property="searchIp" />
+    <result column="searcher" jdbcType="VARCHAR" property="searcher" />
+    <result column="args" jdbcType="VARCHAR" property="args" />
+  </resultMap>
+</mapper>

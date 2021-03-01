@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.CharMapper">
+
+
+    <select id="queryShequList" resultType="java.lang.String">
+         select distinct sq from tp_basic_population where sq is not null
+    </select>
+
+    <select id="queryOverLookInfo" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.OverLookInfoOutDto">
+            SELECT
+            (
+            SELECT COUNT ( * ) FROM tp_basic_population
+            ) AS peopleNum,
+            ( SELECT COUNT ( * ) FROM cf_shequ ) AS shequNum,
+            ( SELECT COUNT ( * ) FROM cf_xiaoqu ) AS xiaoquNum,
+            ( SELECT COUNT ( * ) FROM cf_building ) AS buildingNum
+    </select>
+
+    <select id="queryDisableNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.TypeValueOutDto">
+          SELECT
+            case when t1.mzbt is null then '其他' else  t1.mzbt  end as type ,
+            COUNT ( t1.* ) as count
+        FROM
+            disabled_population t1
+        LEFT JOIN  tp_basic_population t2 on t1.sfzh = t2.sfzh
+        WHERE 1=1
+            AND t1.geom is not null
+            <if test="shequ !=null and shequ !=''" >
+                AND t2.sq = #{shequ}
+            </if>
+            <if test="startDate !=null and endDate != null" >
+                AND   <![CDATA[     t2.djrq > #{startDate} and   t2.djrq<  #{endDate}   ]]>
+            </if>
+        GROUP BY
+            t1.mzbt
+    </select>
+
+    <select id="queryElderPeopleNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.TypeValueOutDto">
+        SELECT
+        agerange as type,
+        COUNT ( * )
+        FROM
+        (
+        SELECT CASE
+        WHEN   <![CDATA[     age >= 60 AND age < 80   ]]>  THEN '60-80'
+        WHEN  <![CDATA[    age >= 80 AND age < 90    ]]>  THEN '80-90'
+        WHEN  <![CDATA[    age >= 90 AND age < 100    ]]>   THEN '90-100'
+        WHEN  <![CDATA[   age >= 100    ]]>   THEN '100+'
+        END AS agerange
+        FROM
+        tp_basic_population t1
+        WHERE
+        t1.age >= 60
+        <if test="shequ !=null and shequ !=''" >
+            AND t1.sq = #{shequ}
+        </if>
+        <if test="startDate !=null and endDate != null" >
+            AND   <![CDATA[     t1.djrq > #{startDate} and   t1.djrq<  #{endDate}   ]]>
+        </if>
+        )  t1
+        GROUP BY
+        agerange
+    </select>
+
+    <select id="queryDbhPeopleNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.DbhChartOutDto">
+           SELECT
+            COUNT	( t1.* ) as totalNum
+            ,sum(case  when t1.xb = '男性' then 1 else 0 end )as maleNum
+            ,sum(case  when t1.xb = '女性' then 1 else 0 end )as femaleNum
+            ,(
+            select count(t3.hh) from
+                ( SELECT t2.hh , count(*) FROM dbh_population t1 LEFT JOIN  tp_basic_population t2 on t1.sfzh = t2.sfzh  where 1=1
+                 AND t1.geom is not null
+                 <if test="shequ !=null and shequ !=''" >
+                 AND t1.sq = #{shequ}
+                 </if>
+                <if test="startDate !=null and endDate != null" >
+                    AND   <![CDATA[     t1.djrq > #{startDate} and   t1.djrq<  #{endDate}   ]]>
+                </if>
+                GROUP BY t2.hh )t3
+            ) as  totalHouseNum
+            FROM
+                dbh_population t1
+            LEFT JOIN  tp_basic_population t2 on t1.sfzh = t2.sfzh
+            where 1 =1
+            AND t1.geom is not null
+            <if test="shequ !=null and shequ !=''" >
+                AND t2.sq = #{shequ}
+            </if>
+            <if test="startDate !=null and endDate != null" >
+                AND   <![CDATA[     t2.djrq > #{startDate} and   t2.djrq<  #{endDate}   ]]>
+            </if>
+    </select>
+
+
+    <select id="queryDistressChildrenNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.TypeValueOutDto">
+      SELECT
+         case when "EJFL" is null then '其他' else "EJFL" end as type,
+        COUNT ( * ) as count
+        FROM
+            distress_children t1
+        LEFT JOIN tp_basic_population t2 on t1."SFZH" = t2.sfzh
+        where  "JZDZ" like  '%同里%' or  "JZDZ" like  '%开发区%'
+        <if test="shequ !=null and shequ !=''" >
+            AND t2.sq = #{shequ}
+        </if>
+        <if test="startDate !=null and endDate != null" >
+            AND   <![CDATA[     t2.djrq > #{startDate} and   t2.djrq<  #{endDate}   ]]>
+        </if>
+        GROUP BY
+            "EJFL"
+    </select>
+
+    <select id="queryPeopleTypeNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.TypeValueOutDto">
+            SELECT
+                case when rylx = 'hjrk' then '户籍人口' else '流动人口' END AS TYPE,
+                COUNT ( * ) AS COUNT
+            FROM
+                tp_basic_population t1
+            <if test="shequ !=null and shequ !=''" >
+                AND t1.sq = #{shequ}
+            </if>
+            <if test="startDate !=null and endDate != null" >
+                AND   <![CDATA[     t1.djrq > #{startDate} and   t1.djrq<  #{endDate}   ]]>
+            </if>
+            GROUP BY
+                rylx
+    </select>
+
+    <select id="queryImportantPeopleNum" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.ZdrkPeopleCountNum" >
+          SELECT
+            ( SELECT COUNT ( * ) FROM tp_basic_population where age >= 60
+                <if test="shequ !=null and shequ !=''" >
+                    AND sq = #{shequ}
+                </if>
+             ) AS oldPeople,
+            ( SELECT COUNT ( * ) FROM disabled_population where geom is not null
+                <if test="shequ !=null and shequ !=''" >
+                    AND sq = #{shequ}
+                </if>
+             ) AS disabledPoeple,
+            ( SELECT COUNT ( * ) FROM dbh_population  where geom is not null
+                <if test="shequ !=null and shequ !=''" >
+                    AND sq = #{shequ}
+                </if>
+            ) AS dbhNum,
+            ( SELECT COUNT ( * ) FROM dbby_population where geom is not null
+                <if test="shequ !=null and shequ !=''" >
+                    AND sq = #{shequ}
+                </if>
+            ) AS dbbyNum,
+            ( SELECT COUNT ( * ) FROM wbh_population where geom is not null
+                <if test="shequ !=null and shequ !=''" >
+                    AND sq = #{shequ}
+                </if>
+            ) AS wbhNum
+    </select>
+
+
+    <select id="queryImportantPeopleSqNum"  resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.TypeValueOutDto">
+        SELECT
+            sq as type,
+            COUNT ( * )  as count
+        FROM
+            tp_basic_population
+        WHERE
+            sq IS NOT NULL
+        GROUP BY
+            sq
+        order by count(*) desc
+        limit 10
+    </select>
+
+
+</mapper>

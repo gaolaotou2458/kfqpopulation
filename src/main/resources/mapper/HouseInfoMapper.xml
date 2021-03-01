@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.HouseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.HouseInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="building_id" jdbcType="VARCHAR" property="buildingId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="house_num" jdbcType="INTEGER" property="houseNum" />
+    <result column="lat" jdbcType="NUMERIC" property="lat" />
+    <result column="lng" jdbcType="NUMERIC" property="lng" />
+    <result column="police_num" jdbcType="NUMERIC" property="policeNum" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

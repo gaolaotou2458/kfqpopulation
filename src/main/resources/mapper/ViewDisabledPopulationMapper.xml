@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.ViewDisabledPopulationMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.ViewDisabledPopulation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="hjdz" jdbcType="VARCHAR" property="hjdz" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="lon" jdbcType="DOUBLE" property="lon" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="rylx" jdbcType="VARCHAR" property="rylx" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="glzt" jdbcType="VARCHAR" property="glzt" />
+    <result column="mzbt" jdbcType="VARCHAR" property="mzbt" />
+    <result column="cjzh" jdbcType="VARCHAR" property="cjzh" />
+    <result column="cjlb" jdbcType="VARCHAR" property="cjlb" />
+    <result column="cjdj" jdbcType="VARCHAR" property="cjdj" />
+    <result column="sfpkjt" jdbcType="VARCHAR" property="sfpkjt" />
+    <result column="xxjzy" jdbcType="VARCHAR" property="xxjzy" />
+    <result column="xxjd" jdbcType="VARCHAR" property="xxjd" />
+    <result column="nj" jdbcType="VARCHAR" property="nj" />
+    <result column="je" jdbcType="VARCHAR" property="je" />
+    <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+    <result column="bzjey" jdbcType="VARCHAR" property="bzjey" />
+    <result column="qsbzny" jdbcType="VARCHAR" property="qsbzny" />
+    <result column="jzbzny" jdbcType="VARCHAR" property="jzbzny" />
+    <result column="jzlx" jdbcType="VARCHAR" property="jzlx" />
+    <result column="znxsxm" jdbcType="VARCHAR" property="znxsxm" />
+    <result column="zncjfmhjhr" jdbcType="VARCHAR" property="zncjfmhjhr" />
+    <result column="znxxjzy" jdbcType="VARCHAR" property="znxxjzy" />
+    <result column="znxxjd" jdbcType="VARCHAR" property="znxxjd" />
+    <result column="znnj" jdbcType="VARCHAR" property="znnj" />
+    <result column="znje" jdbcType="VARCHAR" property="znje" />
+    <result column="is_cjxxjybt" jdbcType="INTEGER" property="isCjxxjybt" />
+    <result column="is_zcshjzdxxx" jdbcType="INTEGER" property="isZcshjzdxxx" />
+    <result column="is_tskncjrshjzdxxx" jdbcType="INTEGER" property="isTskncjrshjzdxxx" />
+    <result column="is_cjrznjybtxx" jdbcType="INTEGER" property="isCjrznjybtxx" />
+  </resultMap>
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        select
+        count(*)
+        from disabled_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+
+    <select id="queryList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.TpDisablePopulationResponse">
+        select
+        *,
+        center_point as centerPoint
+        from disabled_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+
+</mapper>

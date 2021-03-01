@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.CfJianzhuMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.CfJianzhu">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+    <result column="objectid" jdbcType="BIGINT" property="objectid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="shortname" jdbcType="VARCHAR" property="shortname" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="classid" jdbcType="VARCHAR" property="classid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="obligee" jdbcType="VARCHAR" property="obligee" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="upfloor" jdbcType="BIGINT" property="upfloor" />
+    <result column="downfloor" jdbcType="VARCHAR" property="downfloor" />
+    <result column="jzmj" jdbcType="VARCHAR" property="jzmj" />
+    <result column="zdmj" jdbcType="NUMERIC" property="zdmj" />
+    <result column="height" jdbcType="NUMERIC" property="height" />
+    <result column="used" jdbcType="VARCHAR" property="used" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="structure" jdbcType="VARCHAR" property="structure" />
+    <result column="belong" jdbcType="VARCHAR" property="belong" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="fuid" jdbcType="VARCHAR" property="fuid" />
+    <result column="datasource" jdbcType="VARCHAR" property="datasource" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createdate" jdbcType="VARCHAR" property="createdate" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />
+    <result column="csly" jdbcType="VARCHAR" property="csly" />
+    <result column="lzhly" jdbcType="VARCHAR" property="lzhly" />
+    <result column="jznl" jdbcType="VARCHAR" property="jznl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="jznl1" jdbcType="BIGINT" property="jznl1" />
+    <result column="belongid" jdbcType="VARCHAR" property="belongid" />
+    <result column="sscsq" jdbcType="VARCHAR" property="sscsq" />
+    <result column="ssjdz" jdbcType="VARCHAR" property="ssjdz" />
+    <result column="labelname" jdbcType="VARCHAR" property="labelname" />
+    <result column="gdb_geomat" jdbcType="VARCHAR" property="gdbGeomat" />
+    <result column="isprotecte" jdbcType="VARCHAR" property="isprotecte" />
+    <result column="tscl" jdbcType="VARCHAR" property="tscl" />
+  </resultMap>
+
+
+    <resultMap id="geojsonMap" type="com.zhibodata.gis.kfqpopulation.dto.outdto.map.CfJianzhuResponse">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+<!--        <result column="geom" jdbcType="OTHER" property="geom" />-->
+<!--        <result column="objectid" jdbcType="BIGINT" property="objectid" />-->
+        <result column="name" jdbcType="VARCHAR" property="name" />
+<!--        <result column="shortname" jdbcType="VARCHAR" property="shortname" />-->
+        <result column="address" jdbcType="VARCHAR" property="address" />
+<!--        <result column="classid" jdbcType="VARCHAR" property="classid" />-->
+<!--        <result column="type" jdbcType="VARCHAR" property="type" />-->
+<!--        <result column="state" jdbcType="VARCHAR" property="state" />-->
+<!--        <result column="obligee" jdbcType="VARCHAR" property="obligee" />-->
+<!--        <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />-->
+<!--        <result column="upfloor" jdbcType="BIGINT" property="upfloor" />-->
+<!--        <result column="downfloor" jdbcType="VARCHAR" property="downfloor" />-->
+<!--        <result column="jzmj" jdbcType="VARCHAR" property="jzmj" />-->
+<!--        <result column="zdmj" jdbcType="NUMERIC" property="zdmj" />-->
+<!--        <result column="height" jdbcType="NUMERIC" property="height" />-->
+<!--        <result column="used" jdbcType="VARCHAR" property="used" />-->
+<!--        <result column="number" jdbcType="VARCHAR" property="number" />-->
+<!--        <result column="structure" jdbcType="VARCHAR" property="structure" />-->
+<!--        <result column="belong" jdbcType="VARCHAR" property="belong" />-->
+<!--        <result column="region" jdbcType="VARCHAR" property="region" />-->
+<!--        <result column="fuid" jdbcType="VARCHAR" property="fuid" />-->
+<!--        <result column="datasource" jdbcType="VARCHAR" property="datasource" />-->
+<!--        <result column="creator" jdbcType="VARCHAR" property="creator" />-->
+<!--        <result column="createdate" jdbcType="VARCHAR" property="createdate" />-->
+<!--        <result column="editor" jdbcType="VARCHAR" property="editor" />-->
+<!--        <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />-->
+<!--        <result column="csly" jdbcType="VARCHAR" property="csly" />-->
+<!--        <result column="lzhly" jdbcType="VARCHAR" property="lzhly" />-->
+<!--        <result column="jznl" jdbcType="VARCHAR" property="jznl" />-->
+<!--        <result column="remark" jdbcType="VARCHAR" property="remark" />-->
+<!--        <result column="jznl1" jdbcType="BIGINT" property="jznl1" />-->
+<!--        <result column="belongid" jdbcType="VARCHAR" property="belongid" />-->
+<!--        <result column="sscsq" jdbcType="VARCHAR" property="sscsq" />-->
+<!--        <result column="ssjdz" jdbcType="VARCHAR" property="ssjdz" />-->
+<!--        <result column="labelname" jdbcType="VARCHAR" property="labelname" />-->
+<!--        <result column="gdb_geomat" jdbcType="VARCHAR" property="gdbGeomat" />-->
+<!--        <result column="isprotecte" jdbcType="VARCHAR" property="isprotecte" />-->
+<!--        <result column="tscl" jdbcType="VARCHAR" property="tscl" />-->
+        <result column="geojson" jdbcType="VARCHAR" property="geojson"/>
+        <result column="center_point" jdbcType="VARCHAR" property="centerPoint"/>
+    </resultMap>
+
+    <select id="queryList" resultMap="geojsonMap">
+        select  st_asgeojson(geom) as geojson,* from cf_building
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND  name like concat('%',#{keyword},'%')
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="id !=null and id != ''">
+            AND  belong  = #{id}
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        select  count(*) from cf_building
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND  name like concat('%',#{keyword},'%')
+        </if>
+        <if test="id !=null and id != ''">
+            AND  belong  = #{id}
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within ( geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+</mapper>

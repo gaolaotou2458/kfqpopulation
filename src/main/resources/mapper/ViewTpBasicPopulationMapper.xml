@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.ViewTpBasicPopulationMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.ViewTpBasicPopulation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="lon" jdbcType="DOUBLE" property="lon" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="rylx" jdbcType="VARCHAR" property="rylx" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+
+    <select id="queryZrkBuildingCount" resultType="java.lang.Integer">
+         SELECT
+         count(*)
+        FROM tp_basic_population t1
+         LEFT JOIN person_building t6 on t1.sfzh = t6.sfhm
+		 where   t6.building_id = #{buildingId}
+        <if test="name != null and name !=''">
+            AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND t1.age  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfzh  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="rylx != null and rylx !=''">
+            AND t1.rylx =  #{rylx}
+        </if>
+    </select>
+
+
+    <select id="queryZrkBuildingList" resultType="com.zhibodata.gis.kfqpopulation.model.ViewTpBasicPopulation">
+        SELECT
+         *
+        FROM tp_basic_population t1
+         LEFT JOIN person_building t6 on t1.sfzh = t6.sfhm
+		 where   1=1
+		 AND t6.building_id = #{buildingId}
+		<if test="name != null and name !=''">
+        AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND t1.age  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfzh  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="rylx != null and rylx !=''">
+            AND t1.rylx =  #{rylx}
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+    <select id="queryZdrkBuildingCount" resultType="java.lang.Integer">
+          SELECT
+          count(*)
+       FROM ((((tp_basic_population t1
+         LEFT JOIN gongan2."TP_CL_CJRXX" t2 ON (((t2."SFZH")::text = (t1.sfzh)::text)))
+         LEFT JOIN gongan2."TP_MZJ_ZDSHBZRKXI" t3 ON (((t1.sfzh)::text = (t3."SFZHM")::text)))
+         LEFT JOIN gongan2."TP_MZJ_TKRYDXXX" t4 ON (((t1.sfzh)::text = (t4."SFZHM")::text)))
+         LEFT JOIN gongan2."TP_MZJ_DBBYSHQZDXXX" t5 ON (((t1.sfzh)::text = (t5."SFZHM")::text)))
+         LEFT JOIN person_building t6 on t1.sfzh = t6.sfhm
+		 where  (t2."SFZH" IS NOT NULL or  t3."SFZHM" IS NOT NULL or t4."SFZHM" IS NOT NULL or t5."SFZHM" IS NOT NULL
+		 or  t1.age >= 60) and t6.building_id = #{buildingId}
+        <if test="name != null and name !=''">
+            AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND t1.age  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfzh  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="rylx != null and rylx !=''">
+            AND t1.rylx =  #{rylx}
+        </if>
+    </select>
+
+    <select id="queryZdrkBuildingList" resultType="com.zhibodata.gis.kfqpopulation.model.ViewTpBasicPopulation">
+       SELECT
+          *
+       FROM ((((tp_basic_population t1
+         LEFT JOIN gongan2."TP_CL_CJRXX" t2 ON (((t2."SFZH")::text = (t1.sfzh)::text)))
+         LEFT JOIN gongan2."TP_MZJ_ZDSHBZRKXI" t3 ON (((t1.sfzh)::text = (t3."SFZHM")::text)))
+         LEFT JOIN gongan2."TP_MZJ_TKRYDXXX" t4 ON (((t1.sfzh)::text = (t4."SFZHM")::text)))
+         LEFT JOIN gongan2."TP_MZJ_DBBYSHQZDXXX" t5 ON (((t1.sfzh)::text = (t5."SFZHM")::text)))
+         LEFT JOIN person_building t6 on t1.sfzh = t6.sfhm
+		 where  (t2."SFZH" IS NOT NULL or  t3."SFZHM" IS NOT NULL or t4."SFZHM" IS NOT NULL or t5."SFZHM" IS NOT NULL
+		 or  t1.age >= 60) and t6.building_id = #{buildingId}
+        <if test="name != null and name !=''">
+            AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND t1.age  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfzh  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="rylx != null and rylx !=''">
+            AND t1.rylx =  #{rylx}
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+
+    <select id="queryAllListCount" resultType="java.lang.Integer">
+        select
+        count(*)
+        from tp_basic_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+
+    <select id="queryAllList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.TpBasicPopulationResponse">
+        select
+         *,
+        center_point as centerPoint
+        from tp_basic_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+
+    <select id="selectFamilyInfoList"  resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.TpBasicPopulationWithTypeOutDto">
+        SELECT
+        id
+        ,sfhm as  sfzh
+        ,xm
+        ,xb
+        ,xzz as hjdz
+        ,mz
+        ,hh
+        ,lon
+        ,lat
+        ,'户籍人口' as rylx
+        ,getage(sfhm) as age
+        ,yhzgx
+        FROM
+            gongan2.hjrk
+        WHERE
+            hh = #{hh}
+    </select>
+
+
+</mapper>

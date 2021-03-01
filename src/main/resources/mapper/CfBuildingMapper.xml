@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.CfBuildingMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.CfBuilding">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+    <result column="objectid" jdbcType="BIGINT" property="objectid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="shortname" jdbcType="VARCHAR" property="shortname" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="classid" jdbcType="VARCHAR" property="classid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="obligee" jdbcType="VARCHAR" property="obligee" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="upfloor" jdbcType="BIGINT" property="upfloor" />
+    <result column="downfloor" jdbcType="VARCHAR" property="downfloor" />
+    <result column="jzmj" jdbcType="VARCHAR" property="jzmj" />
+    <result column="zdmj" jdbcType="NUMERIC" property="zdmj" />
+    <result column="height" jdbcType="NUMERIC" property="height" />
+    <result column="used" jdbcType="VARCHAR" property="used" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="structure" jdbcType="VARCHAR" property="structure" />
+    <result column="belong" jdbcType="VARCHAR" property="belong" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="fuid" jdbcType="VARCHAR" property="fuid" />
+    <result column="datasource" jdbcType="VARCHAR" property="datasource" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createdate" jdbcType="VARCHAR" property="createdate" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="updatedate" jdbcType="VARCHAR" property="updatedate" />
+    <result column="csly" jdbcType="VARCHAR" property="csly" />
+    <result column="lzhly" jdbcType="VARCHAR" property="lzhly" />
+    <result column="jznl" jdbcType="VARCHAR" property="jznl" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="jznl1" jdbcType="BIGINT" property="jznl1" />
+    <result column="belongid" jdbcType="VARCHAR" property="belongid" />
+    <result column="sscsq" jdbcType="VARCHAR" property="sscsq" />
+    <result column="ssjdz" jdbcType="VARCHAR" property="ssjdz" />
+    <result column="labelname" jdbcType="VARCHAR" property="labelname" />
+    <result column="gdb_geomat" jdbcType="VARCHAR" property="gdbGeomat" />
+    <result column="isprotecte" jdbcType="VARCHAR" property="isprotecte" />
+    <result column="tscl" jdbcType="VARCHAR" property="tscl" />
+  </resultMap>
+
+
+    <select id="queryHouseNumberList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.HouseNumberListOutDto" >
+        SELECT
+            t1.id ,
+            t1.NAME,
+            t1.address,
+            t1.belong,
+            t1.height,
+            t1."number",
+            t1.upfloor,
+              COUNT ( t3.hh )
+        FROM
+            cf_building t1
+            LEFT JOIN person_building t2 ON t1."id" = t2.building_id
+            LEFT JOIN gongan2.hjrk t3 ON t3.sfhm = t2.sfhm
+        WHERE  1=1
+        AND t3.yhzgx = '户主' and glzt = '1'
+            <if test="villageName" >
+                AND t1.belong  like concat('%',#{villageName},'%')
+            </if>
+            <if test="detailName" >
+                AND t1.address  like concat('%',#{detailName},'%')
+            </if>
+        GROUP BY
+            t1.id,
+            t1.NAME,
+            t1.address,
+            t1.belong,
+            t1.height,
+            t1."number",
+            t1.upfloor
+    </select>
+
+    <select id="queryHouseNumberCount" resultType="integer">
+        SELECT
+            COUNT ( * )
+        FROM
+            cf_building t1
+        where 1=1
+        <if test="villageName" >
+            AND t1.belong  like concat('%',#{villageName},'%')
+        </if>
+        <if test="detailName" >
+            AND t1.address  like concat('%',#{detailName},'%')
+        </if>
+    </select>
+
+
+    <select id="queryHouseHzInfoList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.GeneralHouseMemberInfoOutDto">
+        SELECT
+        	t3.id  as id,
+            t1.NAME AS "buildingName",
+            t1.belong AS xiaoqu,
+            t3.xm,
+            t3.xzz as hjdz,
+            t3.xb,
+            t3.sfhm as sfzh,
+            t3.yhzgx,
+            getage ( t3.sfhm ) AS age,
+            CASE
+                WHEN hklx = '1' THEN
+                '城市户口'
+                WHEN hklx = '2' THEN
+                '农村户口'
+                WHEN hklx = '3' THEN
+                '迁出'
+            END AS hklx,
+            jcwh_xdl AS csq,
+        	t3.hh ,
+            streetname as "streetName"
+        FROM
+            cf_building t1
+            LEFT JOIN person_building t2 ON t1."id" = t2.building_id
+            LEFT JOIN gongan2.hjrk t3 ON t3.sfhm = t2.sfhm
+            WHERE 1=1
+            AND t3.yhzgx = '户主' and glzt = '1'
+            <if test="buildingId != null and buildingId !='' " >
+               AND t1.ID = #{buildingId}
+            </if>
+            <if test="hzName != null and hzName !='' " >
+                AND t3.xm  like concat ('%',#{hzName},'%')
+            </if>
+            <if test="address != null and address !='' " >
+                AND t3.xzz like  concat ('%',#{address},'%')
+            </if>
+    </select>
+
+    <select id="queryHouseMemberInfoByHouseList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.search.ViewTpBasicPopulationOutDto">
+            SELECT
+                t1.address,
+                t1.belong,
+                t1.number,
+                t3.*
+            FROM
+            cf_building t1
+            left join  person_building t2 on t1.id = t2.building_id
+            LEFT JOIN tp_basic_population_all t3 on  t2.sfhm = t3.sfzh
+            where  1= 1
+            AND t3.sfzh is not null and t3.age != -1
+            <if test="houseAddress != null and houseAddress !=''" >
+                AND t1.address like concat ('%',#{houseAddress},'%')
+            </if>
+            <if test="villageName != null and villageName !=''" >
+                AND t1.belong like concat ('%',#{villageName},'%')
+            </if>
+            <if test="houseNumber != null and houseNumber!=''" >
+               AND t1.number = #{houseNumber}
+            </if>
+    </select>
+
+
+    <select id="queryHouseMemberInfoByHouseListLimit" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.search.ViewTpBasicPopulationOutDto">
+        SELECT
+        t1.address,
+        t1.belong,
+        t1.number,
+        t3.*
+        FROM
+        cf_building t1
+        left join  person_building t2 on t1.id = t2.building_id
+        left JOIN tp_basic_population_all t3 on  t2.sfhm = t3.sfzh
+        where  1=1
+        AND t3.sfzh is not null and t3.age != -1
+        <if test="houseAddress != null and houseAddress !=''" >
+            AND t1.address like concat ('%',#{houseAddress},'%')
+        </if>
+        <if test="villageName != null and villageName !=''" >
+            AND t1.belong like concat ('%',#{villageName},'%')
+        </if>
+        <if test="houseNumber != null and houseNumber!=''" >
+            AND t1.number = #{houseNumber}
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+
+    <select id="queryHouseMemberInfo" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.GeneraYfcrInfoOutDto" >
+        SELECT
+            t2.id ,
+            t2.xm ,
+            t2.sfzh as sfzh ,
+            t2.hh,
+            t2.xb ,
+            t2.age ,
+            t2.hjdz,
+            t3.belong as csq,
+            t3."number" as "houseNumber" ,
+            t3.upfloor,
+            t3.number,
+             t3.height,
+             t3.ssjdz as jdmc
+        FROM
+            person_building t1
+        LEFT JOIN cf_building t3 on t3."id" = t1.building_id
+        LEFT JOIN tp_basic_population_all  t2 on t1.sfhm = t2.sfzh
+        where t1.building_id =  #{buildingId}
+        <if test="sfzh != null and sfzh !=''" >
+            AND t2.sfzh like  concat('%',#{sfzh},'%')
+        </if>
+        <if test="xb != null and xb !=''" >
+            AND t2.xb  = #{xb}
+        </if>
+        <if test="xm != null and xm !=''" >
+            AND t2.xm like  concat('%',#{xm},'%')
+        </if>
+    </select>
+
+
+
+</mapper>

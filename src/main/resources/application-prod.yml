@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    druid:
+      url: ${jdbc.connectionURL}
+      username: ${jdbc.username}
+      password: ${jdbc.password}
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      driver-class-name: ${jdbc.driverClass}
+  resources:
+    #add-mappings=true 所有的controller 都没命中，则使用默认的静态资源处理器做匹配
+    add-mappings: true
+  #mvc:
+  #  throw-exception-if-no-handler-found: true
+    #接入前段静态资源页面
+  #  static-path-pattern: /static/**
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS 默认
+    #JsonInclude.Include.NON_DEFAULT 属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY 属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL 属性为NULL 不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+
+mybatis:
+  type-aliases-package: com.zhibodata.gis.population.model
+  mapper-locations: classpath:mapper/*.xml
+  #输出sql
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+## 彩色日志路径
+logging:
+  config: classpath:log/logback-spring-prod.xml
+  file:
+    path: C:/nmyslog
+
+server:
+  port: 8082
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.TpBasicPopulationAllMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.TpBasicPopulationAll">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="hjdz" jdbcType="VARCHAR" property="hjdz" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="lon" jdbcType="VARCHAR" property="lon" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="rylx" jdbcType="VARCHAR" property="rylx" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+    <result column="center_point" jdbcType="VARCHAR" property="centerPoint" />
+  </resultMap>
+</mapper>

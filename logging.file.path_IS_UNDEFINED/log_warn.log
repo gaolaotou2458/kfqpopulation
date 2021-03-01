@@ -1,0 +1,2 @@
+2020-11-13 10:37:26.744 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.zhibodata.gis.kfqpopulation]' package. Please check your configuration.
+2020-11-13 16:11:33.851 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.zhibodata.gis.kfqpopulation]' package. Please check your configuration.

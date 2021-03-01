@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.PersonBasicInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.PersonBasicInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="personal_card" jdbcType="NUMERIC" property="personalCard" />
+    <result column="sex" jdbcType="NUMERIC" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="native_space" jdbcType="VARCHAR" property="nativeSpace" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="type" jdbcType="NUMERIC" property="type" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="is_dead" jdbcType="INTEGER" property="isDead" />
+    <result column="is_flow" jdbcType="INTEGER" property="isFlow" />
+    <result column="is_old" jdbcType="INTEGER" property="isOld" />
+    <result column="is_disability" jdbcType="INTEGER" property="isDisability" />
+    <result column="is_low" jdbcType="INTEGER" property="isLow" />
+    <result column="is_five" jdbcType="INTEGER" property="isFive" />
+    <result column="is_important" jdbcType="INTEGER" property="isImportant" />
+    <result column="data_from" jdbcType="VARCHAR" property="dataFrom" />
+    <result column="update_cycle" jdbcType="VARCHAR" property="updateCycle" />
+  </resultMap>
+</mapper>

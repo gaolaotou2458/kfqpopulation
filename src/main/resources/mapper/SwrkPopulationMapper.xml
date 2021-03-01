@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.SwrkPopulationMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.SwrkPopulation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="objectid" jdbcType="INTEGER" property="objectid" />
+    <result column="rysbh" jdbcType="VARCHAR" property="rysbh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="csrq" jdbcType="TIMESTAMP" property="csrq" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="sfhm" jdbcType="VARCHAR" property="sfhm" />
+    <result column="ssxq" jdbcType="VARCHAR" property="ssxq" />
+    <result column="xzz" jdbcType="VARCHAR" property="xzz" />
+    <result column="yhzgxbm" jdbcType="VARCHAR" property="yhzgxbm" />
+    <result column="yhzgx" jdbcType="VARCHAR" property="yhzgx" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="pcsdm" jdbcType="VARCHAR" property="pcsdm" />
+    <result column="pcsdm_xdl" jdbcType="VARCHAR" property="pcsdmXdl" />
+    <result column="jcwh" jdbcType="VARCHAR" property="jcwh" />
+    <result column="jcwh_xdl" jdbcType="VARCHAR" property="jcwhXdl" />
+    <result column="glzt" jdbcType="VARCHAR" property="glzt" />
+    <result column="glzt_xdl" jdbcType="VARCHAR" property="glztXdl" />
+    <result column="fjdm" jdbcType="VARCHAR" property="fjdm" />
+    <result column="hklx" jdbcType="VARCHAR" property="hklx" />
+    <result column="jhr1sfzh" jdbcType="VARCHAR" property="jhr1sfzh" />
+    <result column="jhr1xm" jdbcType="VARCHAR" property="jhr1xm" />
+    <result column="jhgx1" jdbcType="VARCHAR" property="jhgx1" />
+    <result column="jhr2sfzh" jdbcType="VARCHAR" property="jhr2sfzh" />
+    <result column="jhr2xm" jdbcType="VARCHAR" property="jhr2xm" />
+    <result column="jhgx2" jdbcType="VARCHAR" property="jhgx2" />
+    <result column="qwdz" jdbcType="VARCHAR" property="qwdz" />
+    <result column="swsj" jdbcType="TIMESTAMP" property="swsj" />
+    <result column="swyy" jdbcType="VARCHAR" property="swyy" />
+    <result column="xzzbh" jdbcType="VARCHAR" property="xzzbh" />
+    <result column="qtzzbh" jdbcType="VARCHAR" property="qtzzbh" />
+    <result column="sfzqfrq" jdbcType="TIMESTAMP" property="sfzqfrq" />
+    <result column="sfzyxqx" jdbcType="VARCHAR" property="sfzyxqx" />
+    <result column="cszqfrq" jdbcType="TIMESTAMP" property="cszqfrq" />
+    <result column="sqrbh" jdbcType="VARCHAR" property="sqrbh" />
+    <result column="sqrxm" jdbcType="VARCHAR" property="sqrxm" />
+    <result column="jbrbh" jdbcType="VARCHAR" property="jbrbh" />
+    <result column="jbrxm" jdbcType="VARCHAR" property="jbrxm" />
+    <result column="tbrbh" jdbcType="VARCHAR" property="tbrbh" />
+    <result column="tbrxm" jdbcType="VARCHAR" property="tbrxm" />
+    <result column="tbrq" jdbcType="TIMESTAMP" property="tbrq" />
+    <result column="tbdw" jdbcType="VARCHAR" property="tbdw" />
+    <result column="qyfw" jdbcType="VARCHAR" property="qyfw" />
+    <result column="ywlx" jdbcType="VARCHAR" property="ywlx" />
+    <result column="rkyy" jdbcType="VARCHAR" property="rkyy" />
+    <result column="rksj" jdbcType="TIMESTAMP" property="rksj" />
+    <result column="pzdw" jdbcType="VARCHAR" property="pzdw" />
+    <result column="gdrbh" jdbcType="VARCHAR" property="gdrbh" />
+    <result column="gdrxm" jdbcType="VARCHAR" property="gdrxm" />
+    <result column="gdsj" jdbcType="TIMESTAMP" property="gdsj" />
+    <result column="gddwbh" jdbcType="VARCHAR" property="gddwbh" />
+    <result column="cszmbh" jdbcType="VARCHAR" property="cszmbh" />
+    <result column="jsyxm" jdbcType="VARCHAR" property="jsyxm" />
+    <result column="jsdw" jdbcType="VARCHAR" property="jsdw" />
+    <result column="reserve01" jdbcType="VARCHAR" property="reserve01" />
+    <result column="reserve03" jdbcType="TIMESTAMP" property="reserve03" />
+    <result column="sjdm" jdbcType="VARCHAR" property="sjdm" />
+    <result column="sfzslyy" jdbcType="VARCHAR" property="sfzslyy" />
+    <result column="sfzjjx" jdbcType="VARCHAR" property="sfzjjx" />
+    <result column="swqtzz" jdbcType="VARCHAR" property="swqtzz" />
+    <result column="gxrq" jdbcType="TIMESTAMP" property="gxrq" />
+    <result column="pch" jdbcType="VARCHAR" property="pch" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="qcsj" jdbcType="TIMESTAMP" property="qcsj" />
+    <result column="lon" jdbcType="NUMERIC" property="lon" />
+    <result column="lat" jdbcType="NUMERIC" property="lat" />
+    <result column="streetid" jdbcType="VARCHAR" property="streetid" />
+    <result column="streetname" jdbcType="VARCHAR" property="streetname" />
+    <result column="geom" jdbcType="OTHER" property="geom" />
+  </resultMap>
+
+
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        select
+        count(*)
+        from swrk_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfhm like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+
+    <select id="queryList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.SwrkPopulationResponse">
+        select
+        t1.*,
+        center_point as centerPoint,
+        sfhm as sfzh,
+        t2.dict_data_name as swyyString,
+        st_asgeojson(t1.geom) as geojson
+        from swrk_population t1
+        LEFT JOIN data_dict_data t2 on t2.dict_type_code = 'swyy' and t1.swyy = t2.dict_data_code
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfhm like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+    <select id="querySwrkBuildingCount" resultType="java.lang.Integer">
+         select count(*) from
+		 swrk_population t1
+		 LEFT JOIN person_building t2 on t1.sfhm = t2.sfhm
+		 where t2.building_id = #{buildingId}
+        <if test="name != null and name !=''">
+            AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND getage(t1.sfhm)  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfhm  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+    </select>
+
+    <select id="queryZdrkBuildingList" resultType="com.zhibodata.gis.kfqpopulation.model.ViewTpBasicPopulation">
+        select  * from
+        swrk_population t1
+        LEFT JOIN person_building t2 on t1.sfhm = t2.sfhm
+        where t2.building_id = #{buildingId}
+        <if test="name != null and name !=''">
+            AND t1.xm  like  concat( '%', #{name} ,'%' )
+        </if>
+        <if test="age != null ">
+            AND getage(t1.sfhm)  = #{age}
+        </if>
+        <if test="sex != null and sex !=''">
+            AND t1.xb =  #{sex}
+        </if>
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfhm  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+
+    <select id="querySwrkList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.SwrkPopulationResponse">
+        select
+        t1.*,
+        t1.sfhm as sfzh,
+        t2.dict_data_name as swyyString
+        from swrk_population t1
+        LEFT JOIN data_dict_data t2 on t2.dict_type_code = 'swyy' and t1.swyy = t2.dict_data_code
+        where   1=1 AND t1.sfhm != '000000000000000000'
+        <if test="sfzh != null and sfzh !=''">
+            AND t1.sfhm  like  concat( '%', #{sfzh} ,'%' )
+        </if>
+        <if test="xm != null and xm !=''">
+            AND t1.xm  like  concat( '%', #{xm} ,'%' )
+        </if>
+        <if test="xb != null and xb !=''">
+            AND t1.xb  = #{xb}
+        </if>
+    </select>
+
+
+    <select id="querySwrkInfo" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.general.SwrkPopulationInfoOutDto" >
+        select
+        t1.*,
+        t1.sfhm as sfzh,
+        t2.dict_data_name as swyyString
+        from swrk_population t1
+        LEFT JOIN data_dict_data t2 on t2.dict_type_code = 'swyy' and t1.swyy = t2.dict_data_code
+        where  t1.id = #{id}
+    </select>
+
+
+</mapper>

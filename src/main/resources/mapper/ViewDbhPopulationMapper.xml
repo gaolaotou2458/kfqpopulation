@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.ViewDbhPopulationMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.ViewDbhPopulation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="hjdz" jdbcType="VARCHAR" property="hjdz" />
+    <result column="mz" jdbcType="VARCHAR" property="mz" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="lon" jdbcType="DOUBLE" property="lon" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="rylx" jdbcType="VARCHAR" property="rylx" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="bzjey" jdbcType="VARCHAR" property="bzjey" />
+    <result column="jtgx" jdbcType="VARCHAR" property="jtgx" />
+    <result column="hzxm" jdbcType="VARCHAR" property="hzxm" />
+    <result column="hzsfzhm" jdbcType="VARCHAR" property="hzsfzhm" />
+    <result column="sfsw" jdbcType="VARCHAR" property="sfsw" />
+    <result column="jyzk" jdbcType="VARCHAR" property="jyzk" />
+    <result column="zbbz" jdbcType="VARCHAR" property="zbbz" />
+    <result column="ldnl" jdbcType="VARCHAR" property="ldnl" />
+    <result column="whcd" jdbcType="VARCHAR" property="whcd" />
+    <result column="dbzh" jdbcType="VARCHAR" property="dbzh" />
+    <result column="yjnsrxjy" jdbcType="VARCHAR" property="yjnsrxjy" />
+  </resultMap>
+
+    <select id="queryListCount" resultType="java.lang.Integer">
+        select
+        count(*)
+        from dbh_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+    </select>
+
+    <select id="queryList" resultType="com.zhibodata.gis.kfqpopulation.dto.outdto.map.TpDbhPopulationResponse">
+        select
+        *,
+        center_point as centerPoint
+        from dbh_population
+        where 1=1
+        <if test="keyword != null and keyword != ''" >
+            AND    (  xm like concat('%',#{keyword},'%') or  sfzh like concat('%',#{keyword},'%'))
+        </if>
+        <if test="polygonString != null and polygonString != ''" >
+            AND 't' = ST_Within (geom,ST_GeomFromText ( #{polygonString}, 4490 ) )
+        </if>
+        <if test="size != null">
+            limit #{size}  offset   #{size}* (#{page}-1)
+        </if>
+    </select>
+</mapper>

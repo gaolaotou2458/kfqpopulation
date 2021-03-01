@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.HouseholdInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.HouseholdInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_data" jdbcType="TIMESTAMP" property="updateData" />
+    <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="hlx" jdbcType="VARCHAR" property="hlx" />
+    <result column="hkxz" jdbcType="VARCHAR" property="hkxz" />
+    <result column="ssxq" jdbcType="VARCHAR" property="ssxq" />
+    <result column="jlx" jdbcType="VARCHAR" property="jlx" />
+    <result column="mlph" jdbcType="VARCHAR" property="mlph" />
+    <result column="mlxz" jdbcType="VARCHAR" property="mlxz" />
+    <result column="cxsj" jdbcType="TIMESTAMP" property="cxsj" />
+    <result column="hh" jdbcType="VARCHAR" property="hh" />
+    <result column="hzsfzhm" jdbcType="VARCHAR" property="hzsfzhm" />
+    <result column="jlsj" jdbcType="TIMESTAMP" property="jlsj" />
+  </resultMap>
+</mapper>

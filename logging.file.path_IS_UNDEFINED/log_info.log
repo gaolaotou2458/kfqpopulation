@@ -1,0 +1,55 @@
+2020-11-13 10:37:25.135 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - Starting KfqpopulationApplication on DESKTOP-171GQ9L with PID 21264 (D:\IdeaWorkSpace\kfqpopulation\target\classes started by chenxiyao in D:\IdeaWorkSpace\kfqpopulation)
+2020-11-13 10:37:25.144 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - No active profile set, falling back to default profiles: default
+2020-11-13 10:37:27.799 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2020-11-13 10:37:27.816 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2020-11-13 10:37:27.817 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-13 10:37:27.818 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-13 10:37:27.984 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-13 10:37:27.984 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2398 ms
+2020-11-13 10:37:28.222 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2020-11-13 10:37:28.681 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-11-13 10:37:29.849 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-11-13 10:37:30.316 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-13 10:37:30.530 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020-11-13 10:37:30.532 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020-11-13 10:37:30.533 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2020-11-13 10:37:30.533 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear EntityHelper entityTableMap cache.
+2020-11-13 10:37:30.760 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2020-11-13 10:37:30.803 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2020-11-13 10:37:30.805 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-11-13 10:37:30.837 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-11-13 10:37:30.892 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-11-13 10:37:31.167 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getHouseListUsingPOST_1
+2020-11-13 10:37:31.213 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - Started KfqpopulationApplication in 7.284 seconds (JVM running for 9.094)
+2020-11-13 10:38:23.374 [http-nio-8081-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-13 10:38:23.374 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-13 10:38:23.388 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+2020-11-13 14:15:16.227 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-13 14:15:16.239 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2020-11-13 14:15:16.256 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2020-11-13 16:11:31.663 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - Starting KfqpopulationApplication on DESKTOP-171GQ9L with PID 13376 (D:\IdeaWorkSpace\kfqpopulation\target\classes started by chenxiyao in D:\IdeaWorkSpace\kfqpopulation)
+2020-11-13 16:11:31.674 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - No active profile set, falling back to default profiles: default
+2020-11-13 16:11:35.633 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2020-11-13 16:11:35.655 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2020-11-13 16:11:35.658 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-13 16:11:35.659 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-13 16:11:35.894 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-13 16:11:35.894 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3709 ms
+2020-11-13 16:11:36.478 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2020-11-13 16:11:37.281 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-11-13 16:11:39.761 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-11-13 16:11:40.811 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-13 16:11:41.175 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020-11-13 16:11:41.177 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020-11-13 16:11:41.179 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2020-11-13 16:11:41.180 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear EntityHelper entityTableMap cache.
+2020-11-13 16:11:41.607 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2020-11-13 16:11:41.669 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2020-11-13 16:11:41.672 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2020-11-13 16:11:41.716 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-11-13 16:11:41.791 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2020-11-13 16:11:42.259 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getHouseListUsingPOST_1
+2020-11-13 16:11:42.367 [main] INFO  c.z.gis.kfqpopulation.KfqpopulationApplication - Started KfqpopulationApplication in 12.524 seconds (JVM running for 17.321)
+2020-11-13 16:11:45.556 [http-nio-8081-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-13 16:11:45.557 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-11-13 16:11:45.587 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 29 ms

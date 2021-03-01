@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhibodata.gis.kfqpopulation.mapper.ResourceLayerMapper">
+  <resultMap id="BaseResultMap" type="com.zhibodata.gis.kfqpopulation.model.ResourceLayer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
+    <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
+    <result column="disabled" jdbcType="BIT" property="disabled" />
+    <result column="searchabled" jdbcType="BIT" property="searchabled" />
+    <result column="sub_layer_id" jdbcType="VARCHAR" property="subLayerId" />
+    <result column="sub_layer_name" jdbcType="VARCHAR" property="subLayerName" />
+  </resultMap>
+</mapper>

@@ -25,4 +25,6 @@ public interface UserService {
     LoginInfoOutDto login(String userName, String passWord) throws BusinessException;
 
     UserInfoOutDto getUserInfoById(String id);
+
+    User getUserByUserName(String userName);
 }

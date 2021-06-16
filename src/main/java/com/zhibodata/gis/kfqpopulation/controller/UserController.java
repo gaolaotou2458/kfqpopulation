@@ -1,9 +1,6 @@
 package com.zhibodata.gis.kfqpopulation.controller;
 
-import com.zhibodata.gis.kfqpopulation.common.BusinessException;
-import com.zhibodata.gis.kfqpopulation.common.CommonError;
-import com.zhibodata.gis.kfqpopulation.common.CommonRes;
-import com.zhibodata.gis.kfqpopulation.common.EmBusinessError;
+import com.zhibodata.gis.kfqpopulation.common.*;
 import com.zhibodata.gis.kfqpopulation.dto.indto.LoginIndto;
 import com.zhibodata.gis.kfqpopulation.dto.indto.user.LoginInfoOutDto;
 import com.zhibodata.gis.kfqpopulation.dto.indto.user.UserInfoOutDto;
@@ -88,4 +85,11 @@ public class UserController {
     }
 
 
+    //@InsertAnnotation
+    @GetMapping("/getUserByUserName")
+    @ApiOperation(value = "获取用户详情列表")
+    public CommonRes getUserByUserName(@RequestParam(name = "userName", required = true) String userName) {
+        User user = userService.getUserByUserName(userName);
+        return CommonRes.create(user);
+    }
 }

@@ -33,7 +33,7 @@ public class UserServiceimpl implements UserService {
     }
 
     //@Cacheable(key = "#id")
-     @Cacheable(keyGenerator = "myKeyGenerator")
+    @Cacheable(keyGenerator = "myKeyGenerator")
     @Override
     public User getUserById(String id) {
         return userMapper.selectByPrimaryKey(id);
@@ -114,8 +114,9 @@ public class UserServiceimpl implements UserService {
         String decryption = null;
         User user = null;
         try {
-            decryption = SecureUtil.des(key.getBytes()).decryptStr(passWord);
-            criteria.andEqualTo("password", SecureUtil.md5(decryption));
+            //decryption = SecureUtil.des(key.getBytes()).decryptStr(passWord);
+            //criteria.andEqualTo("password", SecureUtil.md5(decryption));
+            criteria.andEqualTo("password", passWord);
             user = userMapper.selectOneByExample(example);
             if(user == null) {
                 throw new BusinessException(EmBusinessError.LOGIN_FAIL);
@@ -146,6 +147,14 @@ public class UserServiceimpl implements UserService {
     @Override
     public UserInfoOutDto getUserInfoById(String id) {
         return null;
+    }
+
+    @Override
+    public User getUserByUserName(String userName) {
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("userName", userName);
+        User user = userMapper.selectOneByExample(example);
+        return user;
     }
 //
 //    @Override
